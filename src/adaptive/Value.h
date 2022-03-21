@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-constexpr int logLevel = 0;
+constexpr int logLevel = 2;
 
 using value_t = int64_t;
 

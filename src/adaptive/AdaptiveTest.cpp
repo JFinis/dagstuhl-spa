@@ -51,8 +51,14 @@ struct Predicate {
     Predicate(size_t colId, value_t equalsValue) : colId{colId}, equalsValue{equalsValue} {}
 };
 
-int main() {
-    for (int baseQuota: {0, 1, 4, 16, 64, 256}) {
+int main(int argc, char *argv[]) {
+    std::vector<int> baseQuotas;
+    if (argc != 2) {
+        baseQuotas = std::vector{0, 1, 4, 16, 64, 256};
+    } else {
+        baseQuotas.push_back(std::stoi(argv[1]));
+    }
+    for (int baseQuota: baseQuotas) {
         CostModel costModel;
         costModel.baseQuotaPerFile = baseQuota;
         ChunkedTable t{costModel, 2, 100'000};
